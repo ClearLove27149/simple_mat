@@ -7,8 +7,8 @@ A simple matrix library with neural network support, written in C++.
 ```
 simple_mat/
 ├── CMakeLists.txt  # CMake build file
-├── Makefile        # Make build file
 ├── README.md       # This documentation
+├── .gitignore      # Git ignore file
 ├── data/           # Training and test data
 │   ├── input_label_0-9_1000.xml
 │   ├── input_label_1000.xml
@@ -68,34 +68,61 @@ simple_mat/
 
 ## Compilation
 
-### Using CMake
+### Using CMake (Recommended)
 
 ```bash
+# Create build directory
 mkdir build
 cd build
+
+# Generate build files (MinGW on Windows)
+cmake -G "MinGW Makefiles" ..
+
+# Or use default generator (Unix Makefiles on Linux/Mac)
 cmake ..
+
+# Build the project
 cmake --build .
+
+# Or use make directly
+mingw32-make  # Windows with MinGW
+make          # Linux/Mac
 ```
 
-### Using Make
+### Build Output
 
-```bash
-make
-```
+After successful compilation, the following files will be generated in the `build/` directory:
+
+- `libmatrix_lib.a` - Matrix library
+- `libnet_lib.a` - Neural network library  
+- `test_matrix.exe` - Matrix operations test
+- `test_net.exe` - Neural network test
+- `complex_test.exe` - Complex matrix operations test
 
 ## Running Tests
+
+After compilation, all executables are located in the `build/` directory.
 
 ### Matrix Tests
 
 ```bash
-./test_matrix  # Basic matrix operations test
-./complex_test  # Complex matrix operations test
+cd build
+./test_matrix.exe   # Basic matrix operations test (Windows)
+./complex_test.exe  # Complex matrix operations test (Windows)
+
+# On Linux/Mac
+./test_matrix
+./complex_test
 ```
 
 ### Neural Network Tests
 
 ```bash
-./test_net  # Neural network training and testing
+cd build
+./test_net.exe  # Neural network training and testing (Windows)
+
+# On Linux/Mac
+./test_net
 ```
 
 ## Usage
